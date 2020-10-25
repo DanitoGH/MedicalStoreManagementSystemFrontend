@@ -19,7 +19,6 @@ import { MapPin, Mail, Phone } from 'react-feather';
 
 const ClientProfilePageContent = (props) => {
 
-  
   const baseUrl = 'https://django-hospital-store-mng-api.herokuapp.com'
 
   const [clientData, setClientData] = useState({})
@@ -42,10 +41,14 @@ const ClientProfilePageContent = (props) => {
       if(clientData.data.id !== undefined){
          setClientData(clientData.data)
          setInfoLoaded(true)
+
+         console.log(`clientData: ${JSON.stringify(clientData.data)}`)
       }
       if(clientOrders.data !== undefined){
         setClientOrders(clientOrders.data)
         $('#dataTable').DataTable({})
+
+        console.log(`clientOrders: ${JSON.stringify(clientOrders.data)}`)
      }
     }))
     .catch(err => {
