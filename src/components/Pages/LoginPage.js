@@ -17,7 +17,7 @@ import activityTracker from '../activityTracker'
 const LoginPage = () => {
 
 
-  const baseUrl = 'django-hospital-store-mng-api.herokuapp.com/api'
+  const baseUrl = 'https://django-hospital-store-mng-api.herokuapp.com/api'
 
   const { setAuth } = useContext(AuthApi)
   const { register, handleSubmit, errors } = useForm()
