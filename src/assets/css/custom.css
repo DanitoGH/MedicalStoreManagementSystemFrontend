@@ -1,0 +1,59 @@
+
+.visibility-off {
+  display: none !important;
+}
+
+ .material-icons {
+  font-size: 20px !important;
+}
+
+ .md-18 {
+  font-size: 18px !important;
+ }
+
+ .md-24 {
+   font-size: 24px !important;
+ }
+
+ .md-32 {
+  font-size: 32px !important;
+ }
+
+ .md-48 {
+   font-size: 48px !important;
+ }
+
+.client-details-card-body {
+  padding: 1rem !important;
+}
+
+.custom-card-footer-padding{
+   padding: 0.72rem 1.35rem !important;
+}
+
+.center-div{
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+}
+
+.table-min-height {
+   min-height: 50px !important;
+   margin-bottom: 300px;
+}
+
+.recent-actvity-card-min-height {
+   min-height: 300px !important;
+   margin-bottom: 300px;
+}
+
+.recent-activity-wrapper {
+   min-height: 255px !important;
+}
+
+
+.fileInput{
+   width: 0px;
+   height: 0px;
+}
