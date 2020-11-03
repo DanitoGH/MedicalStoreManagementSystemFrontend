@@ -41,14 +41,10 @@ const ClientProfilePageContent = (props) => {
       if(clientData.data.id !== undefined){
          setClientData(clientData.data)
          setInfoLoaded(true)
-
-         console.log(`clientData: ${JSON.stringify(clientData.data)}`)
       }
       if(clientOrders.data !== undefined){
         setClientOrders(clientOrders.data)
         $('#dataTable').DataTable({})
-
-        console.log(`clientOrders: ${JSON.stringify(clientOrders.data)}`)
      }
     }))
     .catch(err => {

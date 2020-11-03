@@ -50,14 +50,14 @@ const ClientTopNavbar = () => {
               <li className="nav-item dropdown no-caret mr-2 dropdown-user">
                   <a className="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage" href="#!" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <img className="img-fluid" 
-                       src={(profile.profile_photo !== null? `${baseUrl+profile.profile_photo}`: fallbackImage)} 
+                       src={(profile.profile_photo? `${profile.profile_photo}`: fallbackImage)} 
                        alt={(profile !== null ? profile.username: '')}
                      />
                   </a>
                   <div className="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownUserImage">
                       <h6 className="dropdown-header d-flex align-items-center">
                           <img className="dropdown-user-img" 
-                            src={(profile.profile_photo !== null? `${baseUrl+profile.profile_photo}`: fallbackImage)} 
+                            src={(profile.profile_photo? `${profile.profile_photo}`: fallbackImage)} 
                             alt={(profile !== null? profile.username: '')}
                           />
                           <div className="dropdown-user-details">
