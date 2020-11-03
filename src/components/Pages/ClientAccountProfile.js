@@ -27,7 +27,7 @@ const ClientAccountProfile = (props) => {
     }
 
     const fallbackImage = 'https://i7.pngguru.com/preview/501/90/524/video-game-gaymer-gamer-queer-red-cross-hospital-icon.jpg'
-    const [ imageSrc, setImageSrc] = useState(profile !== null && profile.profile_photo !== null ? `${baseUrl+profile.profile_photo}`: null)
+    const [ imageSrc, setImageSrc] = useState(profile !== null && profile.profile_photo !== null ? `${profile.profile_photo}`: null)
     const { register, handleSubmit, errors } = useForm({ defaultValues: preloadProfileValues })
     const [trackChanges, setTrackChanges] = useState(false)
 
