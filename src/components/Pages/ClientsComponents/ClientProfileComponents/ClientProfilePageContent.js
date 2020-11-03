@@ -67,7 +67,7 @@ const ClientProfilePageContent = (props) => {
             <div className="card h-95">
               <div className="card-body  client-details-card-body">
                 <div className="card-body client-details-card-body text-center">
-                   <img className="rounded-circle mb-2" src={(clientData.profile_photo !== null? `${baseUrl+clientData.profile_photo}`: clientPlaceholder)}  width="60px"  height="60px"   alt="Hospital logo"/>
+                   <img className="rounded-circle mb-2" src={(clientData.profile_photo? `${clientData.profile_photo}`: clientPlaceholder)}  width="60px"  height="60px"   alt="Hospital logo"/>
                    <div className="mb-4  h5">{infoLoaded && clientData.hospital_name}</div>
                 </div>
               </div>
