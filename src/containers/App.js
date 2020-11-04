@@ -5,9 +5,6 @@ import Layout from '../components/Layout/Layout';
 import AuthApi from '../components/auth-api';
 import axios from 'axios';
 
-var $ = require( 'jquery' );
-require('datatables.net-dt')( window, $);
-
 import OpAdminNavigation from '../components/NavigationComponents/OpAdminNavigation';
 import ClientAdminNavigation from '../components/NavigationComponents/ClientAdminNavigation';
 
@@ -44,6 +41,9 @@ const ClientAccountProfile = lazy(() => import('../components/Pages/ClientAccoun
 const ProtectedRoute = lazy(() => import('../components/ProtectedRoutes/protected-route'));
 const ProtectedLogin = lazy(() => import('../components/ProtectedRoutes/protected-login'));
 const ProtectedRegistration = lazy(() => import('../components/ProtectedRoutes/protected-signup'));
+
+var $ = require( 'jquery' );
+require('datatables.net-dt')(window, $);
 
 
 
