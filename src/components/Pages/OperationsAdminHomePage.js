@@ -54,7 +54,6 @@ const OperationsAdminHomepage = () => {
     })
   }
 
-  
   return(
       <div id="layoutSidenav_content">
         <div class="container">
