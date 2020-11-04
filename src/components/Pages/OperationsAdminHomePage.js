@@ -5,7 +5,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import 'datatables.net-dt/js/dataTables.dataTables';
 // import 'datatables.net-dt/css/jquery.dataTables.css';
-
 import  $ from 'jquery'
 
 
