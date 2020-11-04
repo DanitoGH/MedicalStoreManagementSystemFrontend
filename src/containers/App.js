@@ -46,6 +46,7 @@ var $ = require( 'jquery' );
 require('datatables.net-dt')(window, $);
 
 
+
 const App = () => { 
 
   //User account details from localStorage
