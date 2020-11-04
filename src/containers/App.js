@@ -5,6 +5,9 @@ import Layout from '../components/Layout/Layout';
 import AuthApi from '../components/auth-api';
 import axios from 'axios';
 
+var $ = require( 'jquery' );
+require('datatables.net-dt')( window, $);
+
 import OpAdminNavigation from '../components/NavigationComponents/OpAdminNavigation';
 import ClientAdminNavigation from '../components/NavigationComponents/ClientAdminNavigation';
 
