@@ -43,6 +43,7 @@ const ProtectedLogin = lazy(() => import('../components/ProtectedRoutes/protecte
 const ProtectedRegistration = lazy(() => import('../components/ProtectedRoutes/protected-signup'));
 
 
+
 const App = () => { 
 
   //User account details from localStorage
