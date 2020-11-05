@@ -8,7 +8,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-
 const RegisterOperations = (props) => {
 
     const baseUrl = 'https://django-hospital-store-mng-api.herokuapp.com/api'
