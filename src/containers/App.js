@@ -42,10 +42,6 @@ const ProtectedRoute = lazy(() => import('../components/ProtectedRoutes/protecte
 const ProtectedLogin = lazy(() => import('../components/ProtectedRoutes/protected-login'));
 const ProtectedRegistration = lazy(() => import('../components/ProtectedRoutes/protected-signup'));
 
-import  $ from 'jquery'
-require('datatables.net-dt')(window, $);
-
-
 
 const App = () => { 
 
