@@ -15,7 +15,7 @@ table.dataTable.no-footer ,
 .dataTables_wrapper .dataTables_paginate .paginate_button.current,
 .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
    z-index: 3;
-   color: #fff !important;
+   color: #06794f !important;
    background-color: #06794f;
    border: 1px solid #06794f;
    background: transparent !important
