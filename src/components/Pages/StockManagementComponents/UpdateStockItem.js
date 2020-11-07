@@ -36,6 +36,7 @@ const AddStockItem = (props) => {
   const [stockItemData, setStockItemData] = useState({name: name, quantity: quantity, cat: cat_id, subcat: subcat_id, unit: unit, supplier: supp_id})
   const [selectErrors, setSelectErrors] = useState({cat_select: false, subcat_select: false, unit_select: false ,supplier_select: false})
   const [newActivity, setNewActivity] = useState(false)
+  const [busy, setBusy] = useState(false)
 
 
 
@@ -156,6 +157,7 @@ const AddStockItem = (props) => {
     }
     
     if(!selectErrors.cat_select && !selectErrors.subcat_select && !selectErrors.supplier_select) {
+      setBusy(true)
       axios.put(`${baseUrl}/stock-item/update-stock-item/${itemId}`, stockItemData)
       .then(res => {
          if(res.data.success !== undefined){
@@ -163,10 +165,9 @@ const AddStockItem = (props) => {
                position: "bottom-right",
                autoClose: 3000
             })
-
+            setBusy(false)
           //Set new activity to true
            setNewActivity(true)
-
            // Go to inventory-management page after successful update
            props.history.push('/inventory-management')
          }
@@ -176,7 +177,8 @@ const AddStockItem = (props) => {
               toast.error(`Error: ${err.message}`, {
                 position: "bottom-right",
                 autoClose: 3000
-             })         
+             })
+             setBusy(false)         
           }   
       })
     }else{

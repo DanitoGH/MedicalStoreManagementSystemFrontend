@@ -18,6 +18,7 @@ const AddStockItem = (props) => {
   const [selectValues, setSelectValues] = useState({cat:'', subcat:'', unit:'', supplier:''})
   const [stockItemData, setStockItemData] = useState({name:'', quantity: ''})
   const [selectErrors, setSelectErrors] = useState({cat_select: false, subcat_select: false, unit_select: false ,supplier_select: false})
+  const [busy, setBusy] = useState(false)
 
 
    useEffect(() => {
@@ -57,7 +58,7 @@ const AddStockItem = (props) => {
 
   // Dynamically fetch subcategories of the selected category 
   const getSubCategories = (cat_id) => {
-    axios.get(`${baseUrl}/api/sub-categories/get-subcategory/${cat_id}`)
+    axios.get(`${baseUrl}/api/sub-categories/get-single-subcategory/${cat_id}`)
    .then(res => {
     if(res.data.length > 0){
       const subcategoryOptionsArray = []
@@ -65,6 +66,11 @@ const AddStockItem = (props) => {
          subcategoryOptionsArray.push({value: `${subcat.id}`, label: `${subcat.name}`})
       })
       setSubCategories(subcategoryOptionsArray)
+    }else{
+      toast.info('No data found!', {
+        position: "bottom-right",
+        autoClose: 3000
+     }) 
     }
   })
   .catch(err => {
@@ -135,6 +141,8 @@ const AddStockItem = (props) => {
     }
     
     if(!selectErrors.cat_select && !selectErrors.subcat_select && !selectErrors.supplier_select) {
+
+      setBusy(true)
       addStockItem()
     }else{
       return
@@ -152,6 +160,7 @@ const AddStockItem = (props) => {
          autoClose: 3000
         });
 
+        setBusy(false)
         //Redirect to inventory-management      
         props.history.push("/inventory-management")
      }
@@ -161,7 +170,9 @@ const AddStockItem = (props) => {
           toast.error(`Error: ${err.message}`, {
             position: "bottom-right",
             autoClose: 3000
-         })         
+         }) 
+         
+        setBusy(false)
       }   
   })
 }
@@ -266,7 +277,10 @@ const AddStockItem = (props) => {
                         </div>
                          <br/>
                          <br/>
-                       <button className="btn btn-primary marginTop btn-block" type="submit">Submit</button>
+                       <button className="btn btn-primary mt-3 marginTop btn-block" type="submit" disabled={busy}>
+                          { !busy && <span>Submit</span>}
+                          { busy && <span>Please wait...</span>}
+                       </button>
                      </form>
                    </div>
                 </div>

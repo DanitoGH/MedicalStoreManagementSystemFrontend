@@ -31,6 +31,8 @@ const CreateOrder = (props) => {
   const [itemsOptions, setItemsOptions] = useState(null)
   const [orderData, setOrderData] = useState({item: itemId, client: profile.prof_id, ordered_qty: ordered_qty, unit: unit, urgency_level: urgency_level})
   const [selectErrors, setSelectErrors] = useState({item: false, urgency_level: false, unit_measurement: false})
+  const [busy, setBusy] = useState(false)
+
 
 
   //Custom react select style
@@ -115,6 +117,7 @@ const CreateOrder = (props) => {
     }
 
     if(!selectErrors.item && !selectErrors.unit && !selectErrors.urgency_level) {
+      setBusy(true)      
        axios.put(`${baseUrl}/orders/update-order/${order_id}`, orderData)
        .then(res => { 
           if(res.data.success !== undefined){
@@ -122,7 +125,7 @@ const CreateOrder = (props) => {
               position: "bottom-right",
               autoClose: 3000
           })
-
+          setBusy(false)      
           // Go to homepage after successful update
          props.history.push('/client-admin')
        }
@@ -132,7 +135,8 @@ const CreateOrder = (props) => {
             toast.error(`Error: ${err.message}`, {
               position: "bottom-right",
               autoClose: 3000
-            })         
+            }) 
+            setBusy(false)        
           }
       })
     }else{
@@ -206,7 +210,10 @@ const CreateOrder = (props) => {
                             </div>
                             <br/>
                             <br/>
-                           <button className="btn btn-primary btn-block marginTop" type="submit">Submit</button>
+                           <button className="btn btn-primary marginTop btn-block" type="submit" disabled={busy}>
+                             { !busy && <span>Save changes</span>}
+                             { busy && <span>Please wait...</span>}
+                           </button>
                           </form>
                         </div>
                     </div>

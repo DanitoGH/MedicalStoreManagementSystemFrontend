@@ -23,6 +23,7 @@ const UpdateStockItemSubCategory = (props) => {
   const [categories, setCategories] = useState({})
   const [updateData, setUpdateData] = useState({name: subcat_name, categ: cat_id})
   const [selectError, setSelectError] = useState(false)
+  const [busy, setBusy] = useState(false)
 
 
   useEffect(() => {
@@ -73,7 +74,7 @@ const UpdateStockItemSubCategory = (props) => {
         setSelectError(true)
       return    
     }
-
+    setBusy(true)
     axios.put(`${baseUrl}/sub-categories/update-subcategory/${subcat_id}`, updateData)
     .then(res => {
        if(res.data.success !== undefined){
@@ -81,6 +82,8 @@ const UpdateStockItemSubCategory = (props) => {
             position: "bottom-right",
             autoClose: 3000
           })
+
+          setBusy(false)
          // Go tosubcategory-management page after successful update
          props.history.push('/subcategory-management')
        }
@@ -90,7 +93,9 @@ const UpdateStockItemSubCategory = (props) => {
             toast.error(`Error: ${err.message}`, {
               position: "bottom-right",
               autoClose: 3000
-           })         
+           })
+
+           setBusy(false)        
         }   
     })
   }
@@ -133,7 +138,10 @@ const UpdateStockItemSubCategory = (props) => {
                        </div>
                        <br/>
                        <br/>
-                       <button className="btn btn-primary btn-block marginTop" type="submit">Submit</button>
+                       <button className="btn btn-primary marginTop btn-block" type="submit" disabled={busy}>
+                          { !busy && <span>Submit</span>}
+                          { busy && <span>Please wait...</span>}
+                       </button>
                     </form>
                   </div>
                 </div>

@@ -15,6 +15,7 @@ const AddStockCategory = (props) => {
   const {register, handleSubmit, errors} = useForm()
   const [categoryData, setCategoryData] = useState({name: '', quantity: ''})
   const [newActivity, setNewActivity] = useState(false)
+  const [busy, setBusy] = useState(false)
 
 
   // Trigger activity tracker
@@ -30,6 +31,7 @@ const AddStockCategory = (props) => {
   }
   
   const onSubmit = () => {
+     setBusy(true)
      addItemCategory()
   }
 
@@ -41,6 +43,8 @@ const AddStockCategory = (props) => {
            position: "bottom-right",
            autoClose: 3000
           })
+
+          setBusy(false)
 
          //Set new activity to true
           setNewActivity(true)
@@ -54,7 +58,9 @@ const AddStockCategory = (props) => {
             toast.error(`Error: ${err.message}`, {
               position: "bottom-right",
               autoClose: 3000
-           })         
+           })   
+           
+           setBusy(false)
         }   
     })
  }
@@ -101,7 +107,10 @@ const AddStockCategory = (props) => {
                      </div>
                       <br/>
                       <br/>
-                      <button className="btn btn-primary btn-block marginTop" type="submit">Submit</button>
+                      <button className="btn btn-primary marginTop btn-block" type="submit" disabled={busy}>
+                          { !busy && <span>Submit</span>}
+                          { busy && <span>Please wait...</span>}
+                       </button>
                   </form>
                 </div>
               </div>
