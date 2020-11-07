@@ -12,12 +12,15 @@ const AddStockItemSupplier = (props) => {
    const baseUrl = 'https://django-hospital-store-mng-api.herokuapp.com/api'
    const {register, handleSubmit, errors} = useForm()
    const [supplierInfo, setSupplierInfo] = useState({name: '',item: '',email: '',phone: '',city: '', country: ''})
- 
+   const [busy, setBusy] = useState(false)
+
+
    const changeHandler = e => {
      setSupplierInfo({ ...supplierInfo,  [e.target.name]: e.target.value})
    }
    
    const onSubmit = () => {
+      setBusy(true)
       addSupplier()
    }
 
@@ -30,6 +33,8 @@ const AddStockItemSupplier = (props) => {
            autoClose: 3000
           })
 
+          setBusy(false)
+
           //Redirect to inventory-management      
           props.history.push("/supplier-management")
        }
@@ -39,7 +44,9 @@ const AddStockItemSupplier = (props) => {
              toast.error(`Error: ${err.message}`, {
                position: "bottom-right",
                autoClose: 3000
-            })         
+            }) 
+            
+            setBusy(false)
          }   
      })
    }
@@ -129,9 +136,12 @@ const AddStockItemSupplier = (props) => {
                   </div>
                   </div>
                   <br/>
-                   <button className="btn btn-primary btn-block marginTop" type="submit">Submit</button>
-                  </form>
-                  </div>
+                  <button className="btn btn-primary marginTop btn-block" type="submit" disabled={busy}>
+                    { !busy && <span>Submit</span>}
+                    { busy && <span>Please wait...</span>}
+                  </button>
+                 </form>
+                </div>
                </div>
             </div>
          </div>

@@ -22,40 +22,36 @@ const AddStockItemSupplier = (props) => {
    const baseUrl = 'https://django-hospital-store-mng-api.herokuapp.com/api'
    const [supplierInfo, setSupplierInfo] = useState({name: name, item: item, email: email, phone: phone, city: city, country: country})
    const {register, handleSubmit, errors} = useForm({defaultValues: supplierInfo})
+   const [busy, setBusy] = useState(false)
+
 
    const changeHandler = e => {
      setSupplierInfo({ ...supplierInfo,  [e.target.name]: e.target.value })
    }
    
    const onSubmit = () => {
+      setBusy(true)      
       axios.put(`${baseUrl}/suppliers/update-supplier/${suppId}`, supplierInfo)
        .then(res => {
         if(res.data.success !== undefined){
             toast.success(res.data.success, {
                 position: "bottom-right",
-                autoClose: 4000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined
+                autoClose: 3000
               })
             }
-   
+
+         setBusy(false)      
          props.history.push("/supplier-management")
 
         }).catch(err => {
             if(err){
                 toast.error(`Error: ${err.message}`, {
                 position: "bottom-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            })         
-            }   
+                autoClose: 3000,
+            }) 
+            
+            setBusy(false)              
+          }   
         })
    }
 
@@ -144,7 +140,10 @@ const AddStockItemSupplier = (props) => {
                   </div>
                   </div>
                   <br/>
-                   <button className="btn btn-primary btn-block marginTop" type="submit">Submit</button>
+                   <button className="btn btn-primary marginTop btn-block" type="submit" disabled={busy}>
+                      { !busy && <span>Submit</span>}
+                      { busy && <span>Please wait...</span>}
+                   </button>
                   </form>
                   </div>
                </div>

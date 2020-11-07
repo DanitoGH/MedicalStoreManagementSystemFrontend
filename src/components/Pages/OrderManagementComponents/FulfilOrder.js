@@ -29,6 +29,7 @@ import 'react-toastify/dist/ReactToastify.css';
   const [updateData, setUpdateData] = useState({status: status !== 'Pending'? status : '', delivered_qty: qty_delivered})
   const [selectError, setSelectError] = useState(false)
   const [trackChanges, setTrackChanges] = useState(false)
+  const [busy, setBusy] = useState(false)
 
 
   //Custom react select style
@@ -69,7 +70,7 @@ import 'react-toastify/dist/ReactToastify.css';
        })
        return 
     }
-
+    setBusy(true)
     // Deduct the delivered quantity from the totol items in stock 
     const currentTotal = updateData.delivered_qty !== qty_delivered? (items_in_stock - parseInt(updateData.delivered_qty)) : qty_delivered
     axios.all([
@@ -81,6 +82,7 @@ import 'react-toastify/dist/ReactToastify.css';
              position: "bottom-right",
              autoClose: 3000
           })
+          setBusy(false)
          // Go to homepage after successful update
          props.history.push('/')
        }
@@ -89,10 +91,10 @@ import 'react-toastify/dist/ReactToastify.css';
             toast.error(`Error: ${err.message}`, {
               position: "bottom-right",
               autoClose: 3000
-           })         
+           })  
+           setBusy(false)       
         }   
     })
-
   }
 
 
@@ -155,7 +157,10 @@ import 'react-toastify/dist/ReactToastify.css';
                        </div>
                        <br/>
                        <br/>
-                       <button className="btn btn-primary btn-block marginTop" type="submit">Submit</button>
+                       <button className="btn btn-primary marginTop btn-block" type="submit" disabled={busy}>
+                          { !busy && <span>Submit</span>}
+                          { busy && <span>Please wait...</span>}
+                       </button>
                       </form>
                     </div>
                 </div>

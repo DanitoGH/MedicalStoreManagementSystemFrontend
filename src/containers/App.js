@@ -1,9 +1,15 @@
 import React , { useState, useEffect , lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Switch , Route} from "react-router-dom";
+
+import Lottie from 'react-lottie';
+import * as animationData from '../assets/animations/loading.json';
+
+import axios from 'axios';
 
 import Layout from '../components/Layout/Layout';
 import AuthApi from '../components/auth-api';
-import axios from 'axios';
+
+import NoMatch from '../components/Pages/404Page';
 
 import OpAdminNavigation from '../components/NavigationComponents/OpAdminNavigation';
 import ClientAdminNavigation from '../components/NavigationComponents/ClientAdminNavigation';
@@ -76,10 +82,30 @@ const App = () => {
   }, [])
 
 
+  //Lottie default options
+  const defaultOptions = {
+      loop: true,
+      autoplay: true, 
+      animationData: animationData.default,
+      rendererSettings: {
+         preserveAspectRatio: 'xMidYMid slice'
+      }
+  }
+
+
+  
   return (
     <AuthApi.Provider value={{auth, setAuth}}>
      <Router>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={
+         <div class="container h-100">
+          <div class="row align-items-center h-100">
+            <div class="col-6 mx-auto">
+              <Lottie  options={defaultOptions} width={240}/>
+            </div>
+            </div>
+          </div> 
+        }>
        <div className="App">
           <Layout>
             {/* Show navbar if user is already signed in */}
@@ -128,6 +154,8 @@ const App = () => {
                {/* Account Profile Page */}
               <ProtectedRoute path="/operations-account-profile" component={OperationsAccountProfile} />
               <ProtectedRoute path="/client-account-profile" component={ClientAccountProfile} />
+
+              <Route component={ NoMatch } />
             </Switch>
           </Layout>
         </div>

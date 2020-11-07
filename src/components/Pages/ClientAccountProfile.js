@@ -30,6 +30,7 @@ const ClientAccountProfile = (props) => {
     const [ imageSrc, setImageSrc] = useState(profile !== null && profile.profile_photo !== null ? `${profile.profile_photo}`: null)
     const { register, handleSubmit, errors } = useForm({ defaultValues: preloadProfileValues })
     const [trackChanges, setTrackChanges] = useState(false)
+    const [busy, setBusy] = useState(false)
 
   
     const inputChangeHandler = () => {
@@ -50,7 +51,6 @@ const ClientAccountProfile = (props) => {
 
   
     const onSubmit = (data) => {
-
      // Redirect to homepage if no changes were made
      if(!trackChanges) return props.history.push('/client-admin')
 
@@ -68,7 +68,7 @@ const ClientAccountProfile = (props) => {
       if(profilePhoto !== undefined){
          formData.append('profile_photo', profilePhoto)
       }
-      
+      setBusy(true)
       updateProfile(formData)
     }
 
@@ -98,7 +98,7 @@ const ClientAccountProfile = (props) => {
             position: "bottom-right",
             autoClose: 3000
          })
-         
+         setBusy(false)
          return props.history.push('/client-admin')
         }         
        }).catch(err => { 
@@ -106,10 +106,12 @@ const ClientAccountProfile = (props) => {
             toast.error(`Error, ${err.message}`, {
               position: "bottom-right",
               autoClose: 3000
-           })         
+           })  
+           setBusy(false)       
         }
      })
   }
+
 
   return(
      <div id="layoutSidenav_content">
@@ -232,7 +234,10 @@ const ClientAccountProfile = (props) => {
                   </div>
                   {/* <!-- Save changes button--> */}
                   <br/>
-                 <button className="btn btn-primary btn-block" type="submit">Save changes</button>
+                 <button className="btn btn-primary btn-block" type="submit" disabled={busy}>
+                     { !busy && <span>Save changes</span>}
+                     { busy && <span>Please wait...</span>}
+                 </button>
               </div>
              </div>
             </div>

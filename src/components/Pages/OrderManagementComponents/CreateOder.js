@@ -22,7 +22,7 @@ const CreateOrder = (props) => {
   const [orderData, setOrderData] = useState({item:'', client: profile.prof_id, ordered_qty: '', delivered_qty: 0, unit: '', urgency_level:'' })
   const [selectErrors, setSelectErrors] = useState({item: false, urgency_level: false, unit_measurement: false})
   const [newActivity, setNewActivity] = useState(false)
-
+  const [busy, setBusy] = useState(false)
 
 
   //Custom react select style
@@ -115,6 +115,7 @@ const CreateOrder = (props) => {
     }
 
     if(!selectErrors.item && !selectErrors.unit && !selectErrors.urgency_level) {
+      setBusy(true)
       axios.post(`${baseUrl}/orders/create-order`, orderData)
       .then(res => { 
         if(res.data.success !== undefined){
@@ -122,6 +123,7 @@ const CreateOrder = (props) => {
              position: "bottom-right",
              autoClose: 3000
           })
+          setBusy(false)
           //Set new activity to true
           setNewActivity(true)
          // Go to homepage
@@ -133,7 +135,8 @@ const CreateOrder = (props) => {
           toast.error(`Error: ${err.message}`, {
              position: "bottom-right",
              autoClose: 3000
-          })         
+          }) 
+          setBusy(false)        
         }
      })
     }else{
@@ -203,7 +206,10 @@ const CreateOrder = (props) => {
                             </div>
                             <br/>
                             <br/>
-                           <button className="btn btn-primary btn-block marginTop" type="submit">Submit</button>
+                            <button className="btn btn-primary marginTop btn-block" type="submit" disabled={busy}>
+                              { !busy && <span>Submit</span>}
+                              { busy && <span>Please wait...</span>}
+                            </button>
                           </form>
                         </div>
                     </div>

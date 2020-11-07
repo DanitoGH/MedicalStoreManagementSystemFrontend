@@ -16,6 +16,7 @@ const AddStockItemSubCategory = (props) => {
   const [itemSelectedValue, setItemSelectedValue] = useState('')
   const [selectError, setSelectError] = useState(false)
   const [subcategory, setSubCategory] = useState({name: ''})
+  const [busy, setBusy] = useState(false)
 
 
    useEffect(() => {
@@ -61,7 +62,7 @@ const AddStockItemSubCategory = (props) => {
         setSelectError(true)
       return    
     }
-    
+    setBusy(true)
     // Save subcategory to DB
     saveItemSubCategory()
   }
@@ -74,7 +75,7 @@ const AddStockItemSubCategory = (props) => {
            position: "bottom-right",
            autoClose: 3000
          })
-
+          setBusy(false)
           //Redirect to inventory-management      
           props.history.push("/subcategory-management")
        }
@@ -83,7 +84,8 @@ const AddStockItemSubCategory = (props) => {
             toast.error(`Error: ${err.message}`, {
               position: "bottom-right",
               autoClose: 3000
-           })         
+           })  
+           setBusy(false)      
         }   
     })
   }
@@ -125,7 +127,10 @@ const AddStockItemSubCategory = (props) => {
                        </div>
                        <br/>
                        <br/>
-                       <button className="btn btn-primary btn-block marginTop" type="submit">Submit</button>
+                       <button className="btn btn-primary marginTop btn-block" type="submit" disabled={busy}>
+                          { !busy && <span>Submit</span>}
+                          { busy && <span>Please wait...</span>}
+                       </button>
                     </form>
                   </div>
                 </div>

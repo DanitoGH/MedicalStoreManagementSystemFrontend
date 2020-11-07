@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 import  './assets/css/main.css';
 import  './assets/css/custom.css';
 import  './assets/css/green-theme.css';
-import  './assets/css/select2-bootstrap4.min.css';
 
 import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
