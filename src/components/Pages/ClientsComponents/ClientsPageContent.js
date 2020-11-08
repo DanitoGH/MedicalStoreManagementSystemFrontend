@@ -42,6 +42,7 @@ const  PageContent = () => {
     })
  }
 
+
  return ( 
     <div className="container mt-n10">
       <div className="card card-header-actions table-min-height">
@@ -64,7 +65,7 @@ const  PageContent = () => {
                <tbody>
                 {Array.from(clientsData).map((client, index) => (
                 <tr key={index}>
-                  <td><img class="rounded-circle" src={(client.profile_photo !== null? `${baseUrl+client.profile_photo}`: clientPlaceholder)}  width="50px"  height="50px"  alt={client.hospital_name}/></td>
+                  <td><img class="rounded-circle" src={(client.profile_photo? `${client.profile_photo}`: clientPlaceholder)}  width="50px"  height="50px"  alt={client.hospital_name}/></td>
                   <td>{client.hospital_name}</td>
                   <td>{client.location}</td>
                   <td>{client.email}</td>
