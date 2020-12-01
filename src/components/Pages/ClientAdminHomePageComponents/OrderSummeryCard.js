@@ -16,7 +16,7 @@ import axios from 'axios'
 
 const OrderSummeryCard = (props) =>{
 
-   const baseUrl = 'http://127.0.0.1:8000/api'
+   const baseUrl = 'https://django-hospital-store-mng-api.herokuapp.com/api'
    const orderSummery = props.orders
 
 

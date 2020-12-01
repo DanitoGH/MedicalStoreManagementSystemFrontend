@@ -2,7 +2,6 @@ import React from 'react';
 
 const OrdersPendingCard = (props) => {
 
-
     return (
       <div className="col-xl-4 col-md-6 mb-4">
           <div className="card border-top-0 border-bottom-0 border-right-0 border-left-lg border-danger h-100">
