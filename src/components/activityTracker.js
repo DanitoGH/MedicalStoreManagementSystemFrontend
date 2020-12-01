@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function activityTracker(activity, activityType){
 
-    const baseUrl = 'http://127.0.0.1:8000/api'
+    const baseUrl = 'https://django-hospital-store-mng-api.herokuapp.com/api'
    
     //User account details from localStorage
     const userProfileInfo = localStorage.getItem('user')
