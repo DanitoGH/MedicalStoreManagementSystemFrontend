@@ -52,7 +52,7 @@ const AddStockItem = (props) => {
  },[newActivity])
 
 
-  const getAllData = () => {
+ const getAllData = () => {
     axios.all([
        axios.get(`${baseUrl}/categories/get-category`),  //Get all categories
        axios.get(`${baseUrl}/suppliers/get-supplier`) //Get all item suppliers
