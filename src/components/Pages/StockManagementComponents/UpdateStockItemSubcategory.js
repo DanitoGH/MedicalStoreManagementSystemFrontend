@@ -27,7 +27,7 @@ const UpdateStockItemSubCategory = (props) => {
 
 
   useEffect(() => {
-    axios.get(`${baseUrl}/categories/read-category`)
+    axios.get(`${baseUrl}/categories/get-category`)
     .then(res => {
       if(res.data.length > 0){
         const optionsArray = []

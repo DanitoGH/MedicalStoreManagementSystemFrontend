@@ -14,7 +14,6 @@ import  $  from 'jquery';
 import activityTracker from '../../activityTracker';
 
 
-
 const PageContent = () => {
 
   

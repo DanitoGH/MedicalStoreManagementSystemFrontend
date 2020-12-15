@@ -43,12 +43,9 @@ const AddStockCategory = (props) => {
            position: "bottom-right",
            autoClose: 3000
           })
-
           setBusy(false)
-
          //Set new activity to true
           setNewActivity(true)
-
          //Redirect to inventory-management      
          props.history.push("/category-management")
        }

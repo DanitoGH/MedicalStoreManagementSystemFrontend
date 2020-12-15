@@ -9,7 +9,6 @@ import activityTracker from '../../activityTracker';
 
 
 
-
 const AddStockItem = (props) => {
 
   const baseUrl = 'https://django-hospital-store-mng-api.herokuapp.com/api'
@@ -55,8 +54,8 @@ const AddStockItem = (props) => {
 
   const getAllData = () => {
     axios.all([
-       axios.get(`${baseUrl}/categories/read-category`),  //Get all categories
-       axios.get(`${baseUrl}/suppliers/read-supplier`) //Get all item suppliers
+       axios.get(`${baseUrl}/categories/get-category`),  //Get all categories
+       axios.get(`${baseUrl}/suppliers/get-supplier`) //Get all item suppliers
    ])
    .then(axios.spread(function (cat, supp) {
 
