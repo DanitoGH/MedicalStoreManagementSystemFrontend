@@ -17,9 +17,9 @@ const Page404 = () => {
 
    return(
      <div id="layoutSidenav_content">
-      <div class="container h-100">
-       <div class="row align-items-center h-100">
-        <div class="col-6 mx-auto">
+      <div className="container h-100">
+       <div className="row align-items-center h-100">
+        <div className="col-6 mx-auto">
           <Lottie  options={defaultOptions} width={240}/>
          </div>
         </div>

@@ -58,20 +58,20 @@ const OperationsAdminHomepage = () => {
   
   return(
       <div id="layoutSidenav_content">
-        <div class="container">
+        <div className="container">
 
           {/* Welcome To Dashboard  */}
           <WelcomeToDashboard />
 
           {/* TotalOrdersCard, OrdersPendingCard & OrdersDeliveredCard Row */}
-           <div class="row">
+           <div className="row">
               <TotalOrdersCard  total_orders={statsData.total_orders} />
               <OrdersPendingCard  pending_orders={statsData.total_pending_orders} />
               <OrdersDeliveredCard  delivered_orders={statsData.total_delivered_orders} />
            </div>
 
             {/* Recent Activity & Order Statistics Row*/ }
-            <div class="row">
+            <div className="row">
                <RecentActivityCard  tracker={activityTracker} />
                <OrderStatisticsCard  graph_data={statsData} />
             </div>

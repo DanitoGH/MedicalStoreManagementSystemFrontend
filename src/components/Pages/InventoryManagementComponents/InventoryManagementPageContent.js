@@ -146,7 +146,7 @@ const PageContent = () => {
                             </td>
                             <td>
                               <Link className="btn btn-datatable btn-icon mr-4" 
-                                to={`/update-stock-item/${inv.id}/${inv.name}/${inv.quantity}/${inv.cat_id}/${inv.cat}/${inv.subcat_id}/${inv.subcat}/${inv.unit}/${inv.supplier_id}/${inv.supplier}`}>
+                                to={`/update-stock-item/${inv.id}/${inv.name}/${inv.quantity}/${inv.cat_id}/${inv.cat}/${inv.subcat_id}/${inv.subcat}/${inv.unit != ""? inv.unit : "Units"}/${inv.supplier_id}/${inv.supplier}`}>
                                   <Edit2 size={22}/>
                                </Link>
                                <button className="btn btn-datatable btn-icon btn-transparent-dark"  onClick={() => deleteItem(inv.id)}>{<Trash2 size={22} />}</button>
